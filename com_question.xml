@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="4.0" method="upgrade">
+    <name>com_question</name>
+    <author>Question Component</author>
+    <creationDate>2026</creationDate>
+    <copyright>Copyright (C) 2026</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>admin@example.com</authorEmail>
+    <authorUrl>www.example.com</authorUrl>
+    <version>1.0.0</version>
+    <description>COM_QUESTION_XML_DESCRIPTION</description>
+    
+    <namespace path="src">Question\Component\Question</namespace>
+    
+    <scriptfile>script.php</scriptfile>
+    
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+    
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    
+    <files folder="site">
+        <folder>src</folder>
+        <folder>tmpl</folder>
+        <folder>language</folder>
+    </files>
+    
+    <media folder="media" destination="com_question">
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>images</folder>
+    </media>
+    
+    <administration>
+        <files folder="admin">
+            <folder>src</folder>
+            <folder>tmpl</folder>
+            <folder>sql</folder>
+            <folder>language</folder>
+            <folder>services</folder>
+        </files>
+        
+        <menu img="class:comments">COM_QUESTION</menu>
+        
+        <submenu>
+            <menu view="questions" img="class:comments-2">COM_QUESTION_QUESTIONS</menu>
+            <menu view="answers" img="class:comments">COM_QUESTION_ANSWERS</menu>
+            <menu view="languages" img="class:language">COM_QUESTION_LANGUAGES</menu>
+            <menu view="activity" img="class:clock">COM_QUESTION_ACTIVITY</menu>
+        </submenu>
+    </administration>
+    
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="enable_voting" type="radio" default="1" label="COM_QUESTION_CONFIG_ENABLE_VOTING" description="COM_QUESTION_CONFIG_ENABLE_VOTING_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="enable_live_updates" type="radio" default="1" label="COM_QUESTION_CONFIG_ENABLE_LIVE_UPDATES" description="COM_QUESTION_CONFIG_ENABLE_LIVE_UPDATES_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="rate_limit_questions" type="number" default="5" label="COM_QUESTION_CONFIG_RATE_LIMIT_QUESTIONS" description="COM_QUESTION_CONFIG_RATE_LIMIT_QUESTIONS_DESC" />
+                <field name="rate_limit_answers" type="number" default="10" label="COM_QUESTION_CONFIG_RATE_LIMIT_ANSWERS" description="COM_QUESTION_CONFIG_RATE_LIMIT_ANSWERS_DESC" />
+                <field name="allow_anonymous" type="radio" default="0" label="COM_QUESTION_CONFIG_ALLOW_ANONYMOUS" description="COM_QUESTION_CONFIG_ALLOW_ANONYMOUS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+    
+    <access component="com_question">
+        <section name="component">
+            <action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+            <action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+            <action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+            <action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+            <action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+            <action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+            <action name="ask.question" title="COM_QUESTION_ACTION_ASK_QUESTION" description="COM_QUESTION_ACTION_ASK_QUESTION_DESC" />
+            <action name="answer.question" title="COM_QUESTION_ACTION_ANSWER_QUESTION" description="COM_QUESTION_ACTION_ANSWER_QUESTION_DESC" />
+            <action name="vote.answer" title="COM_QUESTION_ACTION_VOTE_ANSWER" description="COM_QUESTION_ACTION_VOTE_ANSWER_DESC" />
+            <action name="moderate.content" title="COM_QUESTION_ACTION_MODERATE_CONTENT" description="COM_QUESTION_ACTION_MODERATE_CONTENT_DESC" />
+            <action name="view.live.updates" title="COM_QUESTION_ACTION_VIEW_LIVE_UPDATES" description="COM_QUESTION_ACTION_VIEW_LIVE_UPDATES_DESC" />
+        </section>
+    </access>
+    
+    <servers>
+        <server type="updates" name="Question Updates">https://example.com/updates</server>
+    </servers>
+    
+    <updateservers>
+        <server type="extension" priority="1" name="Question Component">https://example.com/updates/com_question.xml</server>
+    </updateservers>
+</extension>
