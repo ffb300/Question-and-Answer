@@ -9,52 +9,51 @@
     <authorUrl>www.example.com</authorUrl>
     <version>1.0.0</version>
     <description>COM_QUESTION_XML_DESCRIPTION</description>
-    
+
     <namespace path="src">Question\Component\Question</namespace>
-    
+
     <scriptfile>script.php</scriptfile>
-    
+
     <install>
         <sql>
-            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+            <file driver="mysql" charset="utf8">administrator/components/com_question/sql/install.mysql.utf8.sql</file>
         </sql>
     </install>
-    
+
     <update>
         <schemas>
-            <schemapath type="mysql">sql/updates/mysql</schemapath>
+            <schemapath type="mysql">administrator/components/com_question/sql/updates/mysql</schemapath>
         </schemas>
     </update>
-    
+
     <uninstall>
         <sql>
-            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+            <file driver="mysql" charset="utf8">administrator/components/com_question/sql/uninstall.mysql.utf8.sql</file>
         </sql>
     </uninstall>
-    
-    <files folder="site">
+
+    <files folder="components/com_question">
         <folder>src</folder>
-        <folder>tmpl</folder>
         <folder>language</folder>
     </files>
-    
+
     <media folder="media" destination="com_question">
         <folder>css</folder>
         <folder>js</folder>
         <folder>images</folder>
     </media>
-    
+
     <administration>
-        <files folder="admin">
+        <files folder="administrator/components/com_question">
             <folder>src</folder>
-            <folder>tmpl</folder>
             <folder>sql</folder>
-            <folder>language</folder>
-            <folder>services</folder>
         </files>
-        
+        <languages folder="administrator/language">
+            <language tag="en-GB">en-GB/en-GB.com_question.ini</language>
+        </languages>
+
         <menu img="class:comments">COM_QUESTION</menu>
-        
+
         <submenu>
             <menu view="questions" img="class:comments-2">COM_QUESTION_QUESTIONS</menu>
             <menu view="answers" img="class:comments">COM_QUESTION_ANSWERS</menu>
@@ -62,7 +61,7 @@
             <menu view="activity" img="class:clock">COM_QUESTION_ACTIVITY</menu>
         </submenu>
     </administration>
-    
+
     <config>
         <fields name="params">
             <fieldset name="basic">
@@ -83,7 +82,7 @@
             </fieldset>
         </fields>
     </config>
-    
+
     <access component="com_question">
         <section name="component">
             <action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
@@ -99,11 +98,11 @@
             <action name="view.live.updates" title="COM_QUESTION_ACTION_VIEW_LIVE_UPDATES" description="COM_QUESTION_ACTION_VIEW_LIVE_UPDATES_DESC" />
         </section>
     </access>
-    
+
     <servers>
         <server type="updates" name="Question Updates">https://example.com/updates</server>
     </servers>
-    
+
     <updateservers>
         <server type="extension" priority="1" name="Question Component">https://example.com/updates/com_question.xml</server>
     </updateservers>
